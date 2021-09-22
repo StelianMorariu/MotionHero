@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+            motion:constraintSetEnd="@+id/partnerDetailsCollapsed"
+            motion:constraintSetStart="@id/partnerDetailsExpanded"
+            motion:duration="1000"
+            motion:autoTransition="animateToStart"
+            >
+        <OnSwipe
+                motion:dragDirection="dragUp"
+                motion:touchAnchorId="@id/partnerDetailsLayout"
+                motion:touchAnchorSide="top" />
+        <KeyFrameSet>
+            <KeyAttribute
+                    android:elevation="4dp"
+                    motion:motionTarget="@+id/backButton"
+                    motion:framePosition="40" />
+
+            <KeyAttribute
+                    android:elevation="4dp"
+                    motion:motionTarget="@+id/partnerName"
+                    motion:framePosition="70" />
+            <KeyAttribute
+                    motion:motionTarget="@+id/fakeToolbar"
+                    motion:framePosition="0"
+                    android:translationY="0dp" />
+            <KeyAttribute
+                    motion:motionTarget="@+id/addButton"
+                    motion:framePosition="0"
+                    android:translationX="0dp" />
+            <KeyAttribute
+                    motion:motionTarget="@+id/addButton"
+                    motion:framePosition="50"
+                    android:translationX="300dp" />
+            <KeyAttribute
+                    motion:motionTarget="@+id/addButton"
+                    motion:framePosition="0"
+                    android:translationY="0dp" />
+            <KeyAttribute
+                    motion:motionTarget="@+id/addButton"
+                    motion:framePosition="50"
+                    android:translationY="30dp" />
+            <!---->
+
+            <KeyAttribute
+                    motion:motionTarget="@+id/logo"
+                    motion:framePosition="0"
+                    android:translationX="0dp" />
+            <KeyAttribute
+                    motion:motionTarget="@+id/logo"
+                    motion:framePosition="25"
+                    android:translationX="-10dp" />
+            <KeyAttribute
+                    motion:motionTarget="@+id/logo"
+                    motion:framePosition="0"
+                    android:translationY="0dp" />
+            <KeyAttribute
+                    motion:motionTarget="@+id/logo"
+                    motion:framePosition="50"
+                    android:translationY="10dp" />
+            <KeyAttribute
+                    motion:motionTarget="@+id/partnerCategory"
+                    motion:framePosition="25"
+                    android:translationX="-10dp" />
+            <KeyAttribute
+                    motion:motionTarget="@+id/partnerCategory"
+                    motion:framePosition="35"
+                    android:translationX="-30dp" />
+            <KeyAttribute
+                    motion:motionTarget="@+id/fakeToolbar"
+                    motion:framePosition="40"
+                    android:alpha="0" />
+        </KeyFrameSet>
+    </Transition>
+
+    <ConstraintSet android:id="@+id/partnerDetailsExpanded">
+
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/partnerDetailsCollapsed">
+        <Constraint
+                android:id="@id/galleryViewPager"
+                android:layout_height="56dp"
+                android:layout_width="match_parent"
+                android:alpha="0"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+                android:id="@id/fakeToolbar"
+                android:layout_height="?android:attr/actionBarSize"
+                android:layout_width="0dp"
+                android:visibility="visible"
+                motion:layout_constraintEnd_toEndOf="parent"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+                android:id="@id/logo"
+                android:layout_height="48dp"
+                android:layout_width="48dp"
+                android:visibility="gone"
+                android:translationY="100dp"
+                android:translationX="-600dp"
+                motion:layout_constraintTop_toBottomOf="@id/galleryViewPager"
+                motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+                android:id="@id/addButton"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:visibility="gone"
+                android:translationY="100dp"
+                android:translationX="600dp"
+                motion:layout_constraintStart_toEndOf="parent"
+                motion:layout_constraintTop_toBottomOf="@id/galleryViewPager" />
+        <Constraint
+                android:id="@id/partnerName"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:elevation="4dp"
+                android:visibility="visible"
+                motion:layout_constraintTop_toTopOf="@id/backButton"
+                motion:layout_constraintBottom_toBottomOf="@id/backButton"
+                motion:layout_constraintStart_toEndOf="@id/backButton" />
+        <Constraint
+                android:id="@id/partnerCategory"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:visibility="gone"
+                android:translationX="-600dp"
+                motion:layout_constraintTop_toBottomOf="@id/galleryViewPager"
+                motion:layout_constraintStart_toStartOf="parent" />
+        <Constraint
+                android:id="@id/backButton"
+                android:layout_height="56dp"
+                android:layout_width="56dp"
+                android:elevation="4dp"
+                motion:layout_constraintTop_toTopOf="parent"
+                motion:layout_constraintStart_toStartOf="@id/fakeToolbar" />
+        <Constraint
+                android:id="@+id/backButtonProtection"
+                motion:layout_constraintEnd_toEndOf="@id/backButton"
+                android:layout_height="0dp"
+                android:layout_width="0dp"
+                motion:layout_constraintBottom_toBottomOf="@id/backButton"
+                android:alpha="0"
+                motion:layout_constraintTop_toTopOf="@id/backButton"
+                motion:layout_constraintStart_toStartOf="@id/backButton" />
+    </ConstraintSet>
+</MotionScene>

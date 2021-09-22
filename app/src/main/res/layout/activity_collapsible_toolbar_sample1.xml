@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.motion.widget.MotionLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/contentView"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        app:layoutDescription="@xml/collapsible_toolbar_sample_1"
+        >
+
+    <FrameLayout
+            android:id="@+id/galleryViewPager"
+            android:layout_height="240dp"
+            android:layout_width="match_parent"
+            android:background="?colorPrimary"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription"
+            >
+
+        <ImageView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent"
+                android:importantForAccessibility="no"
+                android:scaleType="fitXY"
+                android:src="@drawable/sample_image_5"
+                />
+
+    </FrameLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/galleryHeightGuideline"
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="248dp"
+            />
+
+    <FrameLayout
+            android:id="@+id/fakeToolbar"
+            android:layout_height="?android:attr/actionBarSize"
+            android:layout_width="0dp"
+            android:background="?android:colorBackground"
+            android:elevation="4dp"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
+    <FrameLayout
+            android:id="@+id/fakeCorners"
+            android:layout_height="16dp"
+            android:layout_width="0dp"
+            android:background="@drawable/backdrop_outline"
+            android:backgroundTint="?colorSurface"
+            app:layout_constraintBottom_toBottomOf="@id/galleryHeightGuideline"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+    <ImageView
+            android:id="@+id/backButtonProtection"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:alpha="0.5"
+            android:background="@drawable/ic_round_bg_protection"
+            android:backgroundTint="?colorSurface"
+            android:contentDescription="Back"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="@id/backButton"
+            app:layout_constraintEnd_toEndOf="@id/backButton"
+            app:layout_constraintStart_toStartOf="@id/backButton"
+            app:layout_constraintTop_toTopOf="@id/backButton"
+            app:tint="?colorPrimary"
+            tools:ignore="HardcodedText"
+            />
+
+    <ImageView
+            android:id="@+id/backButton"
+            android:layout_height="56dp"
+            android:layout_width="56dp"
+            android:contentDescription="back"
+            android:elevation="4dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_baseline_arrow_back_24"
+            app:layout_constraintStart_toStartOf="@id/fakeToolbar"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="?colorPrimary"
+            tools:ignore="HardcodedText"
+            />
+
+
+    <ImageView
+            android:id="@+id/logo"
+            android:layout_height="48dp"
+            android:layout_margin="@dimen/margin_1"
+            android:layout_width="48dp"
+            android:src="@drawable/ic_baseline_follow_the_signs_24"
+            app:tint="?colorSecondary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/galleryViewPager"
+            tools:ignore="ContentDescription"
+            />
+
+    <Button
+            android:id="@+id/addButton"
+            style="?buttonStyle"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_1"
+            android:layout_width="wrap_content"
+            android:text="Add"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/galleryViewPager"
+            tools:ignore="HardcodedText,TouchTargetSizeCheck,TouchTargetSizeCheck"
+            />
+
+
+    <TextView
+            android:id="@+id/partnerName"
+            style="?textAppearanceHeadline5"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_1"
+            android:layout_marginTop="@dimen/margin_0_5"
+            android:layout_width="wrap_content"
+            android:ellipsize="end"
+            android:lines="1"
+            android:text="Hiking"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/logo"
+            tools:ignore="HardcodedText"
+            />
+
+    <TextView
+            android:id="@+id/partnerCategory"
+            style="?textAppearanceBody2"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/margin_1"
+            android:layout_width="wrap_content"
+            android:text="Adventures"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/partnerName"
+            tools:ignore="HardcodedText"
+            />
+
+    <androidx.core.widget.NestedScrollView
+            android:id="@+id/partnerDetailsLayout"
+            android:layout_height="0dp"
+            android:layout_width="0dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/partnerCategory"
+            >
+        <LinearLayout
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical"
+                >
+
+            <TextView
+                    android:id="@+id/partnerDescription"
+                    style="?textAppearanceCaption"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/margin_1"
+                    android:layout_width="match_parent"
+                    tools:text="@tools:sample/lorem/random[1]"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/partnerCategory"
+                    tools:ignore="HardcodedText"
+                    />
+
+            <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/partnerHighlights"
+                    android:layout_height="160dp"
+                    android:layout_margin="@dimen/margin_1"
+                    android:layout_width="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/partnerDescription"
+                    />
+
+            <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/dummyContent1"
+                    android:layout_height="160dp"
+                    android:layout_margin="@dimen/margin_1"
+                    android:layout_width="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/partnerHighlights"
+                    />
+
+            <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/dummyContent2"
+                    android:layout_height="160dp"
+                    android:layout_margin="@dimen/margin_1"
+                    android:layout_width="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dummyContent1"
+                    />
+
+            <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/dummyContent3"
+                    android:layout_height="160dp"
+                    android:layout_margin="@dimen/margin_1"
+                    android:layout_width="match_parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/dummyContent2"
+                    />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.motion.widget.MotionLayout>
+
+
+
+
+
+
+
