@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -10,33 +12,74 @@ android {
         applicationId "com.stelianmorariu.motionhero"
         minSdk 23
         targetSdk 30
-        versionCode 1
-        versionName "1.0"
+        versionCode Integer.parseInt(project.property('project.buildnumber'))
+        versionName project.property('project.buildversion')
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
+        debug {
+            buildConfigField "Boolean", "LOGS_ENABLED", project.property('project.logsEnabled')
+            buildConfigField "Boolean", "CRASH_REPORTING_ENABLED", project.property('project.crashReportingEnabled')
+        }
+
         release {
+            initWith debug
+            debuggable = false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
     kotlinOptions {
         jvmTarget = '1.8'
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    lintOptions {
+        lintConfig file("./../lint.xml")
+        checkDependencies true
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/ASL2.0'
+        exclude 'META-INF/atomicfu.kotlin_module'
     }
 }
 
 dependencies {
 
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    // domain
+    implementation Libraries.timber
+
+    implementation Libraries.kotlinStdLib
+    implementation Libraries.ktx
+
+    implementation Libraries.lifecycleRuntime
+    implementation Libraries.lifecycleExtensions
+    kapt Libraries.lifecycleCompiler
+
+    // Glide
+    implementation Libraries.glide
+    kapt Libraries.glideCompiler
+
+    // UI
+    implementation SupportLibraries.appCompatX
+    implementation SupportLibraries.annotationX
+    implementation SupportLibraries.material
+    implementation SupportLibraries.constraintLayout
+
+    // Test dependencies
+    testImplementation TestLibraries.junit
+    androidTestImplementation TestLibraries.espressoCore
+    androidTestImplementation TestLibraries.testRunner
+
 }
